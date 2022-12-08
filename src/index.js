@@ -17,6 +17,21 @@ require("dotenv").config(); //para hacer variables custom instalar dependeica np
 const app = express();
 const port = process.env.PORT || 9000;
 
+app.get("api/sensors",(req, res) =>
+{
+  let sensores = []
+  db.collection('sensores')
+  .find()
+  .sort({tipo:1})
+  .forEach(sensor => sensores.push(sensor))
+  .then(()=>{
+    res.status(200).json(sensores)
+  })
+  .catch(()=>{
+    res.status(500).json({error: 'No Encontrado'})
+  })
+  
+});
 
 
 app.use(cors())
