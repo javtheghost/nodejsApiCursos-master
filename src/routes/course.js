@@ -23,9 +23,9 @@ router.get('/courses', (req, res) =>{
 
 
 router.get("/courses/:id", (req, res) =>{
-    const {id} = req.params;
+    const {_id} = req.params;
     courseSchema
-    .findById(id)
+    .findById(_id)
     .then((data) => res.json(data))
     .catch((error) => res.json({message: error}));
    
