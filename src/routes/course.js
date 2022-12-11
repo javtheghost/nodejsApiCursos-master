@@ -20,23 +20,22 @@ router.get('/courses', (req, res) =>{
    
    });
 
-
-
 router.get("/courses/:id", (req, res) =>{
-    const {_id} = req.params;
+    const {id} = req.params;
     courseSchema
-    .findById(_id)
+    .findById(id)
     .then((data) => res.json(data))
     .catch((error) => res.json({message: error}));
    
    });
 
 
+
 router.put("/courses/:id", (req, res) =>{
     const {id} = req.params;
-    const {name, description, price, lenguage} = req.body;
+    const {name, description, price, lenguage, image} = req.body;
     courseSchema
-    .updateOne({ _id: id},{$set: {name, description, price, lenguage}})
+    .updateOne({ _id: id},{$set: {name, description, price, lenguage, image}})
     .then((data) => res.json(data))
     .catch((error) => res.json({message: error}));
    
